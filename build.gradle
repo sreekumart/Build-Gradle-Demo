@@ -16,13 +16,17 @@ dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
 }
 
-defaultTasks 'clean'
+defaultTasks 'clean','sayHello'
 
 task projectVersion(){
     ext.projectVersion = '1.0'
     doLast {
         println "in dolast"
     }
+}
+
+task sayHello(){
+    println "hello!!"
 }
 
 task displayProjectVersion(){
