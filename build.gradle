@@ -19,18 +19,42 @@ dependencies {
 defaultTasks 'clean','sayHello'
 
 task projectVersion(){
-    ext.projectVersion = '1.0'
+    ext.projectVersion = '5.0'
     doLast {
         println "in dolast"
     }
 }
 
 task sayHello(){
-    println "hello!!"
+    doLast{
+        println "hello!!"
+    }
 }
 
 task displayProjectVersion(){
-    println projectVersion.projectVersion
+    doLast{
+        println projectVersion.projectVersion
+    }
+}
+
+task distribution{
+    doLast{
+        println "We build the zip with version=$version"
+    }
+}
+
+task release{
+    doLast {
+        println "We release now version=$version"
+    }
+}
+
+gradle.taskGraph.whenReady {taskGraph->
+    if(taskGraph.hasTask(":release")){
+        version = '1.0'
+    }else{
+        version = '1.0-SNAPSHOT'
+    }
 }
 
 application {
