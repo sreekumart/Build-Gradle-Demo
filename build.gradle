@@ -27,8 +27,21 @@ task projectVersion(){
 
 task sayHello(){
     doLast{
+        println project.name
+        println project.path
         println "hello!!"
+        println project.buildDir
     }
+}
+
+task createArchive(type:Zip){
+    doLast{
+        archiveFile = "distribution.zip"
+        destinationDirectory = into(file("$buildDir/dist"))
+
+        from "$buildDir/toArchive"
+    }
+
 }
 
 task displayProjectVersion(){
